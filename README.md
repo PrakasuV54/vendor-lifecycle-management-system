@@ -90,48 +90,23 @@ stateDiagram-v2
 
 ### Prerequisites
 * Java 17
-* Maven (optional, custom test runner provided)
+* Maven
 
 ### Build and Run Demo
-To run the full end-to-end simulation:
+To run the full end-to-end workflow simulation:
+
+```bash
+# Clean, compile and run via Maven
+mvn clean compile
+mvn exec:java
+```
+
+Or run manually using standard Java CLI commands:
+
 ```bash
 # Compile project
 javac -d target/classes $(find src -name "*.java")
 
 # Run main simulation orchestrator
 java -cp target/classes com.vlms.main.Main
-```
-
-### Run Unit Test Suite
-The project includes a custom reflection-based JUnit 5 simulation suite that evaluates workflow execution, gating, SLA monitoring, and role authority:
-```bash
-# Run unit tests
-java -cp target/classes com.vlms.test.TestRunner
-```
-
----
-
-## 📊 Sample Output (Verification & Testing)
-
-The custom test suite performs complete, automated validation of all workflow paths:
-```text
-==========================================================================
-                   VLMS JUNIT TEST SUITE SIMULATOR                        
-==========================================================================
-
-Running tests in: ChainOfResponsibilityTest
---------------------------------------------------------------------------
-  [CoR Chain] ProcurementApprovalHandler examining request for VENDOR VND-100
-  [PASSED] testProcurementManagerApproveVendor
-  [CoR Chain] Admin final approval GRANTED.
-  [PASSED] testAdminApproveVendor
-  [PASSED] testProcurementRejectVendor
-  ...
-==========================================================================
-                            TEST SUMMARY                                  
-==========================================================================
-  Total Tests Run: 17
-  Passed:          17 (100.0%)
-  Failed:          0
-==========================================================================
 ```
